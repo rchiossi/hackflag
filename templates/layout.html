@@ -1,24 +1,31 @@
-<!doctype html>
+]<!doctype html>
 <title>hackflag</title>
 <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <div class=page>
-  <div class=metanav>
-    <a href="{{ url_for('scoreboard') }}">scoreboard</a>
-  {% if not session.logged_in %}
-    <a href="{{ url_for('register') }}">register</a>
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-    {% if session.admin_session %}
-    <a href="{{ url_for('admin') }}">admin</a>
-    {% endif %}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  </div>
   <h1>hackflag</h1>
+  <div id="menu">
+    <table><tr>
+	<td class="right">
+	  <a class="right" href="{{ url_for('scoreboard') }}">scoreboard</a>
+	  {% if session.logged_in and session.admin_session %}
+	  <a href="{{ url_for('admin') }}">admin</a>
+	  {% endif %}
+	</td>
+	<td class="left">
+	{% if not session.logged_in %}
+	<a href="{{ url_for('register') }}">register</a>
+	<a href="{{ url_for('login') }}">log in</a>
+	{% else %}
+	<p> You are logged in as <b> {{ session.username }} </b>
+	(<a href="{{ url_for('logout') }}">logout</a>)
+	</p>
+	{% endif %}
+	</td>
+    </tr></table>
+  </div>  
   {% for message in get_flashed_messages() %}
     <div class=flash>{{ message }}</div>
   {% endfor %}
-<br>
   {% block body %}{% endblock %}
 </div>

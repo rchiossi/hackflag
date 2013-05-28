@@ -184,7 +184,11 @@ def register():
             g.db.commit()
 
             flash('User %s registered.' % username)
-            return redirect(url_for('scoreboard'))
+
+            session['logged_in'] = True
+            session['username'] = username
+
+            return redirect(url_for('scoreboard')) 
         else:
             error = 'User already exists'
 

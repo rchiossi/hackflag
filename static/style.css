@@ -7,7 +7,6 @@ h1 {
     font-family:Courier, monospace;
     font-size:50px;
     font-weight:900;
-    border-bottom: 3px solid #ddd; 
 }
 
 h2 {
@@ -15,24 +14,72 @@ h2 {
     font-family:"Courier New", Courier, monospace;
     font-size:30px;
     font-weight:900;
-    padding:2px;
 }
-.page           { margin: 2em auto; width: 70em; border: 5px solid #ccc;
-                  padding: 0.8em; background: white; }
-.metanav        { text-align: right; font-size: 0.8em; padding: 0.3em;
-                  margin-bottom: 1em; background: #fafafa; }
-.flash          { background: #CEE5F5; padding: 0.5em;
-                  border: 1px solid #AACBE2; }
-.error          { background: #F0D6D6; padding: 0.5em; }
-
-a {
-    color: #377BA8; 
+.page {
+    margin: 2em auto;
+    width: 70em;
+    border: 5px solid #ccc;
+    padding: 0.8em;
+    background: white;
+ }
+.metanav        {
+    text-align: right;
+    font-size: 0.8em; 
+    padding: 0.3em;
+}
+.flash {
+    margin-top:20px;
+    background: #CEE5F5; 
+    padding: 0.5em;
+    border: 1px solid #AACBE2; 
+}
+.error{
+    background: #F0D6D6; padding: 0.5em; 
 }
 
+#menu {
+    padding: 5px;
+    padding-right: 0px;
+    width:100%;
+    background: #111;
+}
+
+#menu a {
+    font-family:Courier, monospace;
+    font-weight:900;
+    color:#fff;
+    text-decoration: none;
+    padding:5px;
+}
+
+#menu p {
+    font-family:Courier, monospace;
+    color:#ddd;
+    text-decoration: none;
+    padding:5px;
+}
+
+#menu b {
+    color:#fff;
+}
+
+#menu table{
+    width:100%;
+}
+
+#menu td{
+}
+.right {
+    text-align:left
+}
+.left {
+    text-align:right
+}
 
 #scoreboard table {
     border-collapse:collapse;
     empty-cells: hide;
+    width: 100%;
 }
 
 #scoreboard td {

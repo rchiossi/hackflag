@@ -4,7 +4,8 @@
 <h2>Scoreboard:</h2>
 <table>
   <tr>
-    <td></td>
+    <td class="blackwhite">#</td>
+    <td class="flag">Player</td>
     {% for flag in flags %}
     <td class="flag">
       {{ flag.name }}({{ flag.points }})
@@ -12,13 +13,18 @@
     {% else %}
     <td class="flag"> No flag registered </td>
     {% endfor %}
-    <td class="total">
+    <td class="blackwhite">
       Total
     </td>
   </tr>
+  {% set pos = 0 -%}
   {% for user in users %}
   <tr>
-    <td class="user"> 
+    <td class="blackwhite">
+      {% set pos = pos + 1 -%}
+      {{ pos }}     
+    </td>
+    <td class="grayblack"> 
       {{ user.name }}
     </td>
     {% for flag in flags %}
@@ -32,12 +38,12 @@
     </td>
     {% endif %}
     {% endfor %}
-    <td class="points">
+    <td class="grayblack">
       {{ user.points }}
     </td>
   </tr>    
   {% else %}
-  <tr><td class="user"> No User registered </tr></td>    
+  <tr><td class="grayblack"> No User registered </tr></td>    
 {% endfor %}    
 </table>
 

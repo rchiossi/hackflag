@@ -42,7 +42,11 @@ a {
     font-size:90%;
     font-weight:900;
 }
-.user {
+.blackwhite {
+    color:#fff;
+    background-color: #000;
+}
+.grayblack {
     background-color: #aaa;
 }
 .flag {
@@ -53,14 +57,5 @@ a {
     background-color: #ac4;
 }
 .open {
-    background-color: #bcd;
+    background-color: #ddd;
 }
-.total {
-    color:#fff;
-    background-color: #3a3a3a;
-}
-.points {
-    color:#000;
-    background-color: #ccc;
-}
-

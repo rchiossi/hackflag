@@ -57,6 +57,9 @@ def scoreboard():
             if flag['name'] in user['flags']:
                 user['points'] = user['points'] + flag['points']
 
+    if len(users) != 0:
+        users = sorted(users,key=lambda user:user['points'],reverse=True)
+
     return render_template('scoreboard.html', users=users, flags=flags)
 
 @app.route('/add_user', methods=['POST'])

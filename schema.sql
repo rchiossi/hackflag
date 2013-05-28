@@ -8,7 +8,9 @@ create table users (
 drop table if exists flags;
 create table flags (
   value string not null primary key,
-  name string not null
+  name string not null,
+  points integer not null,
+  description text not null
 );
 
 drop table if exists scoreboard;

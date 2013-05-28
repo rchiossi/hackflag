@@ -6,7 +6,7 @@ from flask import Flask, request, session, g, redirect, url_for, \
 from contextlib import closing
 
 # configuration
-DATABASE = '/tmp/hackflag.db'
+DATABASE = '/home/rchiossi/hackflag.db'
 DEBUG = True
 SECRET_KEY = 'super_secret_key'
 ADMIN = u'admin'
@@ -42,19 +42,22 @@ def scoreboard():
     query = g.db.execute('select name from users where type=?',(u'user',))
     users = [{'name':row[0]} for row in query.fetchall()]
     
-    query = g.db.execute('select name from flags')
-    flags = [{'name':row[0]} for row in query.fetchall()]
+    query = g.db.execute('select name,description,points from flags')
+    flags = [{'name':row[0],'description':row[1],'points':row[2]}
+             for row in query.fetchall()]
 
     for user in users:
-        query = g.db.execute('select flag from scoreboard where user=?',(user['name'] ,))
+        user['points'] = 0
+
+        query = g.db.execute('select flag from scoreboard where user=?',
+                             (user['name'] ,))
         user['flags'] = [row[0] for row in query.fetchall()]
 
-        print user['flags']
-
-    print users
+        for flag in flags:
+            if flag['name'] in user['flags']:
+                user['points'] = user['points'] + flag['points']
 
     return render_template('scoreboard.html', users=users, flags=flags)
-
 
 @app.route('/add_user', methods=['POST'])
 def add_user():
@@ -79,9 +82,11 @@ def add_flag():
 
     name = request.form['name']
     value = request.form['value']
+    points = request.form['points']
+    description = request.form['description']    
 
-    g.db.execute('insert into flags (name, value) values (?, ?)',
-                 [name,value])
+    g.db.execute('insert into flags (value,name,points,description) values (?, ?, ?, ?)',
+                 [value,name,points,description])
     g.db.commit()
 
     flash('New flag added.')
@@ -158,7 +163,29 @@ def admin():
         abort(401)
 
     return render_template('admin.html')
+
+@app.route('/register', methods=['POST','GET'])
+def register():
+    error = None
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        query = g.db.execute('select name from users')
+        users = [row[0] for row in query.fetchall()]
         
+        if not username in users:
+            g.db.execute('insert into users (name, password, type) values (?, ?, ?)',
+                     [username,password,u'user'])
+            g.db.commit()
+
+            flash('User %s registered.' % username)
+            return redirect(url_for('scoreboard'))
+        else:
+            error = 'User already exists'
+
+    return render_template('register.html', error=error)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')

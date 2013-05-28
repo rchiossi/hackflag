@@ -23,11 +23,15 @@
 
 <form action="{{ url_for('add_flag') }}" method=post class=add-user>
   <dl>
-    <dt>flag name:
-      <dd><input type=text size=30 name=name>
-        <dt>flag:
-          <dd><input type=text size=30 name=value>
-          <dd><input type=submit value=Add>
+    <dt>flag name:</dt>
+    <dd><input type=text size=30 name=name></dd>
+    <dt>flag:</dt>
+    <dd><input type=text size=30 name=value></dd>
+    <dt>points:</dt>
+    <dd><input type=text size=30 name=points></dd>
+    <dt>description:</dt>
+    <dd><input type=text size=140 name=description></dd>
+    <dd><input type=submit value=Add></dd>
   </dl>
 </form>
 

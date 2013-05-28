@@ -7,11 +7,14 @@
     <td></td>
     {% for flag in flags %}
     <td class="flag">
-      {{ flag.name }}
+      {{ flag.name }} ({{ flag.points }})
     </td>
     {% else %}
-    <td> No flag registered </td>
+    <td class="flag"> No flag registered </td>
     {% endfor %}
+    <td class="total">
+      Total
+    </td>
   </tr>
   {% for user in users %}
   <tr>
@@ -29,9 +32,12 @@
     </td>
     {% endif %}
     {% endfor %}
+    <td class="points">
+      {{ user.points }}
+    </td>
   </tr>    
   {% else %}
-  <tr><td> No User registered </tr></td>    
+  <tr><td class="user"> No User registered </tr></td>    
 {% endfor %}    
 </table>
 
@@ -42,5 +48,14 @@
   <b>flag:</b><input type=text size=80 name=flag><input type=submit value=Submit>
 </form>
 {% endif %}
+
+<h2>Tasks:</h2>
+{% for flag in flags %}
+<h3> {{ flag.name }} </h3>
+<p> {{ flag.description }}</p>
+{% else %}
+<h3> No registered tasks. </h3>
+{% endfor %}
+
 </div>
 {% endblock %}

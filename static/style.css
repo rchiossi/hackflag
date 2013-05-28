@@ -4,7 +4,7 @@ body {
 
 h1 {
     color: #666;
-    font-family:"Courier New", Courier, monospace;
+    font-family:Courier, monospace;
     font-size:50px;
     font-weight:900;
     border-bottom: 3px solid #ddd; 
@@ -32,11 +32,10 @@ a {
 
 #scoreboard table {
     border-collapse:collapse;
+    empty-cells: hide;
 }
 
-
 #scoreboard td {
-/*    border: 1px solid black; */
     text-align:center;
     padding:10px;
     font-family:"Courier New", Courier, monospace;
@@ -55,3 +54,12 @@ a {
 .open {
     background-color: #bcd;
 }
+.total {
+    color:#fff;
+    background-color: #3a3a3a;
+}
+.points {
+    color:#000;
+    background-color: #ccc;
+}
+

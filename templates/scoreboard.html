@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block body %}
+<div id="scoreboard">
+<h2>Scoreboard:</h2>
+<table>
+  <tr>
+    <td></td>
+    {% for flag in flags %}
+    <td class="flag">
+      {{ flag.name }}
+    </td>
+    {% else %}
+    <td> No flag registered </td>
+    {% endfor %}
+  </tr>
+  {% for user in users %}
+  <tr>
+    <td class="user"> 
+      {{ user.name }}
+    </td>
+    {% for flag in flags %}
+    {% if flag.name in user.flags %}
+    <td class="captured">
+      Captured
+    </td>
+    {% else %}
+    <td class="open">
+      Open
+    </td>
+    {% endif %}
+    {% endfor %}
+  </tr>    
+  {% else %}
+  <tr><td> No User registered </tr></td>    
+{% endfor %}    
+</table>
+
+<br>
+{% if session.logged_in %}
+<h2>Submit Flag:</h2>
+<form action="{{ url_for('get_flag') }}" method=post class=add-user>
+  <b>flag:</b><input type=text size=80 name=flag><input type=submit value=Submit>
+</form>
+{% endif %}
+</div>
+{% endblock %}

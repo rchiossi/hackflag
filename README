@@ -1,0 +1,6 @@
+hackflag - A simple scoreboard for inhouse ctf
+
+This is a Flask implementation of a scoreboard for an in house ctf.
+
+WARNING: This should never be used outside a controled environment since
+it is extremely insecure.

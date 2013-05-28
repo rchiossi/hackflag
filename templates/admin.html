@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block body %}
+  
+{% if session.admin_session %}
+<h2>Add User</h2>
+<br>
+
+<form action="{{ url_for('add_user') }}" method=post class=add-user>
+  <dl>
+    <dt>username:
+      <dd><input type=text size=30 name=username>
+    <dt>password:
+      <dd><input type=text size=30 name=password>
+    <dt>type:
+      <dd><input type="checkbox" name="type" value="user">User<br>
+      <dd><input type="checkbox" name="type" value="admin">Admin<br> 
+      <dd><input type=submit value=Add>
+  </dl>
+</form>
+
+<br>
+<h2>Add Flag</h2>
+
+<form action="{{ url_for('add_flag') }}" method=post class=add-user>
+  <dl>
+    <dt>flag name:
+      <dd><input type=text size=30 name=name>
+        <dt>flag:
+          <dd><input type=text size=30 name=value>
+          <dd><input type=submit value=Add>
+  </dl>
+</form>
+
+{% endif %}
+
+{% endblock %}

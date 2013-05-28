@@ -42,7 +42,7 @@ def scoreboard():
     query = g.db.execute('select name from users where type=?',(u'user',))
     users = [{'name':row[0]} for row in query.fetchall()]
     
-    query = g.db.execute('select name,description,points from flags')
+    query = g.db.execute('select name,description,points from flags order by points')
     flags = [{'name':row[0],'description':row[1],'points':row[2]}
              for row in query.fetchall()]
 

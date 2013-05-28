@@ -15,7 +15,7 @@
 	<td class="left">
 	{% if not session.logged_in %}
 	<a href="{{ url_for('register') }}">register</a>
-	<a href="{{ url_for('login') }}">log in</a>
+	<a href="{{ url_for('login') }}">login</a>
 	{% else %}
 	<p> You are logged in as <b> {{ session.username }} </b>
 	(<a href="{{ url_for('logout') }}">logout</a>)
